@@ -15,62 +15,65 @@ Aplicación CRUD completa para gestionar una cafetería, desarrollada con **Reac
 
 ---
 
-# 🫖 Base de Datos Cafetería
+# 🫖 Modelo ER Base de Datos Cafetería
 
-Este es el **diagrama entidad-relación (ERD)** de la base de datos para la cafetería.  
-Incluye Clientes, Empleados, Productos, Métodos de Pago, Pedidos y Detalle de Pedido.
+## Entidades y Atributos
 
-```mermaid
-erDiagram
-    CLIENTES {
-        int id_cliente PK
-        string nombre
-        string telefono
-        string email
-    }
+### CLIENTES
+- **id_cliente** (PK)
+- nombre
+- teléfono
+- email
 
-    EMPLEADOS {
-        int id_empleado PK
-        string nombre
-        string cargo
-        decimal salario
-    }
+### EMPLEADOS
+- **id_empleado** (PK)
+- nombre
+- cargo
+- salario
 
-    PRODUCTOS {
-        int id_producto PK
-        string nombre
-        decimal precio
-        string categoria
-    }
+### PRODUCTOS
+- **id_producto** (PK)
+- nombre
+- precio
+- categoría
 
-    METODOS_PAGO {
-        int id_pago PK
-        string tipo
-    }
+### MÉTODOS_PAGO
+- **id_pago** (PK)
+- tipo
 
-    PEDIDOS {
-        int id_pedido PK
-        date fecha
-        int id_cliente FK
-        int id_empleado FK
-        int id_pago FK
-    }
+### PEDIDOS
+- **id_pedido** (PK)
+- fecha
+- **id_cliente** (FK)
+- **id_empleado** (FK)
+- **id_pago** (FK)
 
-    DETALLE_PEDIDO {
-        int id_detalle PK
-        int id_pedido FK
-        int id_producto FK
-        int cantidad
-        decimal subtotal
-    }
+### DETALLE_PEDIDO
+- **id_detalle** (PK)
+- **id_pedido** (FK)
+- **id_producto** (FK)
+- cantidad
+- subtotal
 
-    CLIENTES ||--o{ PEDIDOS : "realiza"
-    EMPLEADOS ||--o{ PEDIDOS : "atiende"
-    METODOS_PAGO ||--o{ PEDIDOS : "utiliza"
-    PEDIDOS ||--o{ DETALLE_PEDIDO : "contiene"
-    PRODUCTOS ||--o{ DETALLE_PEDIDO : "incluye"
+---
 
-```
+## Relaciones
+
+| Entidad Origen | Cardinalidad | Entidad Destino | Descripción                                                                 |
+|----------------|--------------|-----------------|-----------------------------------------------------------------------------|
+| CLIENTES       | 1 : N        | PEDIDOS         | Un cliente puede realizar muchos pedidos; un pedido pertenece a un solo cliente. |
+| EMPLEADOS      | 1 : N        | PEDIDOS         | Un empleado atiende muchos pedidos; un pedido es atendido por un solo empleado. |
+| MÉTODOS_PAGO   | 1 : N        | PEDIDOS         | Un método de pago puede usarse en muchos pedidos; cada pedido usa un solo método. |
+| PEDIDOS        | 1 : N        | DETALLE_PEDIDO  | Un pedido está compuesto por uno o varios detalles (composición fuerte).     |
+| PRODUCTOS      | 1 : N        | DETALLE_PEDIDO  | Un producto puede aparecer en muchos detalles de pedidos.                    |
+
+---
+
+## Notas
+
+- La relación muchos a muchos entre **PEDIDOS** y **PRODUCTOS** se resuelve mediante la tabla **DETALLE_PEDIDO**.
+- La composición fuerte entre **PEDIDOS** y **DETALLE_PEDIDO** implica que al eliminar un pedido, se eliminan sus detalles asociados.
+
 
 ---
 
