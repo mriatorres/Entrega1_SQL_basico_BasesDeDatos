@@ -77,6 +77,48 @@ Aplicación CRUD completa para gestionar una cafetería, desarrollada con **Reac
 
 ---
 
+# 📊 Consultas SQL de la Cafetería
+
+A continuación algunas consultas de ejemplo sobre la base de datos:
+
+---
+
+### 🔹 Todos los pedidos con cliente y empleado
+```sql
+SELECT p.id_pedido, c.nombre AS cliente, e.nombre AS empleado, p.fecha
+FROM Pedidos p
+JOIN Clientes c ON p.id_cliente = c.id_cliente
+JOIN Empleados e ON p.id_empleado = e.id_empleado;
+
+```
+
+###🔹 Total gastado por cada cliente
+```sql
+
+SELECT c.nombre, SUM(d.subtotal) AS total_gastado
+FROM Clientes c
+JOIN Pedidos p ON c.id_cliente = p.id_cliente
+JOIN DetallePedido d ON p.id_pedido = d.id_pedido
+GROUP BY c.nombre;
+
+
+```
+
+###🔹 Producto más vendido
+
+```sql
+
+SELECT pr.nombre, SUM(d.cantidad) AS total_vendido
+FROM Productos pr
+JOIN DetallePedido d ON pr.id_producto = d.id_producto
+GROUP BY pr.nombre
+ORDER BY total_vendido DESC
+LIMIT 1;
+
+
+```
+---
+
 ## 🚀 Instrucciones de Instalación
 
 ### 1️⃣ Clonar el repositorio
