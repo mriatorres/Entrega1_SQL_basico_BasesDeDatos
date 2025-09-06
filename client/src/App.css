@@ -1,0 +1,82 @@
+/* Estilos generales */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f8f8f8;
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Títulos */
+h1 {
+  color: #4b2e83;
+  text-align: center;
+}
+
+h2 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* Botones */
+button {
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+/* Colores de botones */
+button.bg-blue-500 { background-color: #3b82f6; color: white; }
+button.bg-green-500 { background-color: #10b981; color: white; }
+button.bg-red-500 { background-color: #ef4444; color: white; }
+button.bg-gray-500 { background-color: #6b7280; color: white; }
+
+/* Listas */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  background-color: #ffffff;
+  margin-bottom: 8px;
+  padding: 10px;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  font-size: 14px;
+}
+
+/* Inputs y formularios (para futuras mejoras) */
+input, select {
+  padding: 8px;
+  margin: 5px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Contenedores de botones */
+div.mb-4 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Resaltar alerta JSON (cuando se lea) */
+.alert-json {
+  background-color: #f3f4f6;
+  padding: 10px;
+  border-radius: 6px;
+  font-family: monospace;
+  overflow-x: auto;
+}
