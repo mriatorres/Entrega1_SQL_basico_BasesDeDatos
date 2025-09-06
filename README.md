@@ -15,6 +15,65 @@ Aplicación CRUD completa para gestionar una cafetería, desarrollada con **Reac
 
 ---
 
+# 🫖 Base de Datos Cafetería
+
+Este es el **diagrama entidad-relación (ERD)** de la base de datos para la cafetería.  
+Incluye Clientes, Empleados, Productos, Métodos de Pago, Pedidos y Detalle de Pedido.
+
+```mermaid
+erDiagram
+    CLIENTES {
+        int id_cliente PK
+        string nombre
+        string telefono
+        string email
+    }
+
+    EMPLEADOS {
+        int id_empleado PK
+        string nombre
+        string cargo
+        decimal salario
+    }
+
+    PRODUCTOS {
+        int id_producto PK
+        string nombre
+        decimal precio
+        string categoria
+    }
+
+    METODOS_PAGO {
+        int id_pago PK
+        string tipo
+    }
+
+    PEDIDOS {
+        int id_pedido PK
+        date fecha
+        int id_cliente FK
+        int id_empleado FK
+        int id_pago FK
+    }
+
+    DETALLE_PEDIDO {
+        int id_detalle PK
+        int id_pedido FK
+        int id_producto FK
+        int cantidad
+        decimal subtotal
+    }
+
+    CLIENTES ||--o{ PEDIDOS : "realiza"
+    EMPLEADOS ||--o{ PEDIDOS : "atiende"
+    METODOS_PAGO ||--o{ PEDIDOS : "utiliza"
+    PEDIDOS ||--o{ DETALLE_PEDIDO : "contiene"
+    PRODUCTOS ||--o{ DETALLE_PEDIDO : "incluye"
+
+```
+
+---
+
 ## 🚀 Instrucciones de Instalación
 
 ### 1️⃣ Clonar el repositorio
