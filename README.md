@@ -92,7 +92,7 @@ JOIN Empleados e ON p.id_empleado = e.id_empleado;
 
 ```
 
-###🔹 Total gastado por cada cliente
+### 🔹 Total gastado por cada cliente
 ```sql
 
 SELECT c.nombre, SUM(d.subtotal) AS total_gastado
@@ -104,7 +104,7 @@ GROUP BY c.nombre;
 
 ```
 
-###🔹 Producto más vendido
+### 🔹 Producto más vendido
 
 ```sql
 
