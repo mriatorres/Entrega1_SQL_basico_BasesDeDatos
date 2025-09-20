@@ -114,6 +114,89 @@ tablas.forEach(tabla => {
     });
 });
 
+ // ==========================
+  // VISTAS
+  // ==========================
+
+// Endpoint para  vista VistaClientePedidos
+app.get('/api/getVistaClientePedidos', (req, res) => {
+  const sql = 'SELECT * FROM VistaClientePedidos';
+  db.query(sql, (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send(err);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+//CREAR VISTA EN MI SQL WORKBENCH !!!!!
+//CREATE OR REPLACE VIEW VistaClientePedidos AS
+//SELECT c.id_cliente, c.nombre AS nombre_cliente, p.id_pedido, p.fecha
+//FROM Clientes c
+//INNER JOIN Pedidos p ON c.id_cliente = p.id_cliente;
+
+//----------------
+
+// Endpoint para vistaPedidosDetalle
+app.get('/api/getVistaPedidosDetalle', (req, res) => {
+  const sqlQuery = "SELECT * FROM vistaPedidosDetalle";
+  db.query(sqlQuery, (err, results) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send("Error al obtener vistaPedidosDetalle");
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+//CREAR VISTA EN MI SQL WORKBENCH !!!!!
+//CREATE OR REPLACE VIEW vistaPedidosDetalle AS
+//SELECT 
+  //p.id_pedido,
+  //p.id_cliente,
+  //p.id_empleado,
+  //p.fecha,
+  //p.id_pago,
+  //d.id_detalle,
+  //d.id_producto,
+  //d.cantidad,
+  //d.subtotal
+//FROM pedidos p
+//JOIN detalle_pedido d ON p.id_pedido = d.id_pedido;
+
+
+// -------------------------------------
+
+// Endpoint para vistaEmpleadosSalarios
+app.get('/api/getVistaEmpleadosSalarios', (req, res) => {
+  const sqlQuery = "SELECT * FROM vistaEmpleadosSalarios";
+  db.query(sqlQuery, (err, results) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send("Error al obtener vistaEmpleadosSalarios");
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+//CREAR VISTA EN MI SQL WORKBENCH !!!!!
+
+//CREATE OR REPLACE VIEW vistaEmpleadosSalarios AS
+//SELECT 
+//  id_empleado,
+//  nombre,
+//  cargo,
+//  salario
+//FROM empleados;
+
+
+// -------------------------------------------
+
+
 // ==========================
 // LEVANTAR SERVIDOR
 // ==========================
