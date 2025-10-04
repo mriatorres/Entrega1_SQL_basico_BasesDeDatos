@@ -1,3 +1,6 @@
+-- MySQL dump 10.13  Distrib 8.0.43, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: cruddb
 -- ------------------------------------------------------
 -- Server version	8.0.43
 
@@ -29,16 +32,6 @@ CREATE TABLE `clientes` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `clientes`
---
-
-LOCK TABLES `clientes` WRITE;
-/*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` VALUES (1,'Ana PÃ©rez','3001234567','ana.perez@gmail.com'),(88,'alamm','45333333','gg@kkk.com');
-/*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `detallepedido`
 --
 
@@ -61,15 +54,6 @@ CREATE TABLE `detallepedido` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `detallepedido`
---
-
-LOCK TABLES `detallepedido` WRITE;
-/*!40000 ALTER TABLE `detallepedido` DISABLE KEYS */;
-/*!40000 ALTER TABLE `detallepedido` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `empleados`
 --
 
@@ -86,15 +70,6 @@ CREATE TABLE `empleados` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `empleados`
---
-
-LOCK TABLES `empleados` WRITE;
-/*!40000 ALTER TABLE `empleados` DISABLE KEYS */;
-/*!40000 ALTER TABLE `empleados` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `metodospago`
 --
 
@@ -107,15 +82,6 @@ CREATE TABLE `metodospago` (
   PRIMARY KEY (`idPago`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `metodospago`
---
-
-LOCK TABLES `metodospago` WRITE;
-/*!40000 ALTER TABLE `metodospago` DISABLE KEYS */;
-/*!40000 ALTER TABLE `metodospago` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `pedidos`
@@ -141,15 +107,6 @@ CREATE TABLE `pedidos` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `pedidos`
---
-
-LOCK TABLES `pedidos` WRITE;
-/*!40000 ALTER TABLE `pedidos` DISABLE KEYS */;
-/*!40000 ALTER TABLE `pedidos` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `productos`
 --
 
@@ -164,15 +121,6 @@ CREATE TABLE `productos` (
   PRIMARY KEY (`idProductos`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `productos`
---
-
-LOCK TABLES `productos` WRITE;
-/*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-/*!40000 ALTER TABLE `productos` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Temporary view structure for view `vistaclientepedidos`
@@ -287,4 +235,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-10-03 19:15:34
+-- Dump completed on 2025-10-03 19:41:23
