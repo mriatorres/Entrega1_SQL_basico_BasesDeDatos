@@ -1,6 +1,3 @@
--- MySQL dump 10.13  Distrib 8.0.43, for Win64 (x86_64)
---
--- Host: 127.0.0.1    Database: cruddb
 -- ------------------------------------------------------
 -- Server version	8.0.43
 
@@ -37,7 +34,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` VALUES (1,'Ana Pérez','3001234567','ana.perez@gmail.com'),(12345,'marlon','1234567','mmg@gmail.com');
+INSERT INTO `clientes` VALUES (1,'Ana PÃ©rez','3001234567','ana.perez@gmail.com'),(88,'alamm','45333333','gg@kkk.com');
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -176,6 +173,110 @@ LOCK TABLES `productos` WRITE;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Temporary view structure for view `vistaclientepedidos`
+--
+
+DROP TABLE IF EXISTS `vistaclientepedidos`;
+/*!50001 DROP VIEW IF EXISTS `vistaclientepedidos`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `vistaclientepedidos` AS SELECT 
+ 1 AS `id_cliente`,
+ 1 AS `nombre_cliente`,
+ 1 AS `numero_pedido`,
+ 1 AS `fecha`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `vistaempleadossalarios`
+--
+
+DROP TABLE IF EXISTS `vistaempleadossalarios`;
+/*!50001 DROP VIEW IF EXISTS `vistaempleadossalarios`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `vistaempleadossalarios` AS SELECT 
+ 1 AS `idEmpleados`,
+ 1 AS `nombre`,
+ 1 AS `cargo`,
+ 1 AS `salario`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `vistapedidosdetalle`
+--
+
+DROP TABLE IF EXISTS `vistapedidosdetalle`;
+/*!50001 DROP VIEW IF EXISTS `vistapedidosdetalle`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `vistapedidosdetalle` AS SELECT 
+ 1 AS `id_pedido`,
+ 1 AS `id_cliente`,
+ 1 AS `id_empleado`,
+ 1 AS `fecha`,
+ 1 AS `id_pago`,
+ 1 AS `id_detalle`,
+ 1 AS `id_producto`,
+ 1 AS `cantidad`,
+ 1 AS `subtotal`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Final view structure for view `vistaclientepedidos`
+--
+
+/*!50001 DROP VIEW IF EXISTS `vistaclientepedidos`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `vistaclientepedidos` AS select `c`.`id_cliente` AS `id_cliente`,`c`.`nombre` AS `nombre_cliente`,`p`.`idPedidos` AS `numero_pedido`,`p`.`fecha` AS `fecha` from (`clientes` `c` join `pedidos` `p` on((`c`.`id_cliente` = `p`.`idCliente`))) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `vistaempleadossalarios`
+--
+
+/*!50001 DROP VIEW IF EXISTS `vistaempleadossalarios`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `vistaempleadossalarios` AS select `empleados`.`idEmpleados` AS `idEmpleados`,`empleados`.`nombre` AS `nombre`,`empleados`.`cargo` AS `cargo`,`empleados`.`salario` AS `salario` from `empleados` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `vistapedidosdetalle`
+--
+
+/*!50001 DROP VIEW IF EXISTS `vistapedidosdetalle`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `vistapedidosdetalle` AS select `p`.`idPedidos` AS `id_pedido`,`p`.`idCliente` AS `id_cliente`,`p`.`id_empleado` AS `id_empleado`,`p`.`fecha` AS `fecha`,`p`.`id_pago` AS `id_pago`,`d`.`id_detalle` AS `id_detalle`,`d`.`id_producto` AS `id_producto`,`d`.`cantidad` AS `cantidad`,`d`.`subtotal` AS `subtotal` from (`pedidos` `p` join `detallepedido` `d` on((`p`.`idPedidos` = `d`.`id_pedido`))) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -186,4 +287,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-09-05 20:26:30
+-- Dump completed on 2025-10-03 19:15:34
