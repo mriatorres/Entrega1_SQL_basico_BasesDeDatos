@@ -119,6 +119,53 @@ LIMIT 1;
 ```
 ---
 
+# Esquema de Vistas y Ventanas Avanzadas
+
+## Vistas Generales
+
+- vista_totales_clientes
+  - id_cliente
+  - nombre
+  - total_compras
+
+- vista_empleados_salarios
+  - idEmpleados
+  - nombre
+  - cargo
+  - salario
+
+- vista_pedidos_detalle
+  - idPedidos
+  - fecha
+  - id_producto
+  - cantidad
+  - subtotal
+
+- vista_cliente_pedidos
+  - id_cliente
+  - nombre
+  - idPedidos
+  - fecha
+  - id_pago
+
+## Ventanas Avanzadas
+
+- Ranking de Empleados
+  - idEmpleados
+  - nombre
+  - cargo
+  - salario
+  - ranking (RANK() OVER PARTITION BY cargo ORDER BY salario DESC)
+
+- Ventas Acumuladas de Clientes
+  - id_cliente
+  - cliente (nombre)
+  - pedido_id
+  - fecha_pedido
+  - total_acumulado (SUM() OVER PARTITION BY id_cliente ORDER BY fecha)
+    
+---
+
 ## 🚀 Instrucciones de Instalación
 
 ### 1️⃣ Clonar el repositorio
