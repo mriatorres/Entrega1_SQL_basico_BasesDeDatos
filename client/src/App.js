@@ -189,6 +189,130 @@ function App() {
   };
 
   // ==========================
+// CATEGORIAS
+// ==========================
+const [IDCategoria, setIDCategoria] = useState('');
+const [NombreCategoria, setNombreCategoria] = useState('');
+const [DescripcionCategoria, setDescripcionCategoria] = useState('');
+const [categorias, setCategorias] = useState([]);
+
+const submitCategoria = () => {
+  if (!NombreCategoria) {
+    alert("El nombre de la categoría es obligatorio.");
+    return;
+  }
+
+  Axios.post('http://localhost:3001/api/insertCategoria', {
+    nombre: NombreCategoria,
+    descripcion: DescripcionCategoria
+  })
+  .then(() => {
+    alert("Categoría insertada con éxito.");
+    getCategorias();
+    setNombreCategoria('');
+    setDescripcionCategoria('');
+  })
+  .catch(err => {
+    console.error(err);
+    alert("Error al insertar categoría.");
+  });
+};
+
+const getCategorias = () => {
+  Axios.get('http://localhost:3001/api/getCategorias')
+    .then(res => setCategorias(res.data))
+    .catch(err => console.log(err));
+};
+
+const deleteCategoria = (id) => {
+  Axios.delete(`http://localhost:3001/api/deleteCategorias/${id}`)
+    .then(() => getCategorias())
+    .catch(err => console.log(err));
+};
+
+// ==========================
+// PROVEEDORES
+// ==========================
+const [IDProveedor, setIDProveedor] = useState('');
+const [NombreProveedor, setNombreProveedor] = useState('');
+const [TelefonoProveedor, setTelefonoProveedor] = useState('');
+const [CorreoProveedor, setCorreoProveedor] = useState('');
+const [DireccionProveedor, setDireccionProveedor] = useState('');
+const [proveedores, setProveedores] = useState([]);
+
+const submitProveedor = () => {
+  if (!NombreProveedor) {
+    alert("El nombre del proveedor es obligatorio.");
+    return;
+  }
+
+  Axios.post('http://localhost:3001/api/insertProveedor', {
+    nombre: NombreProveedor,
+    telefono: TelefonoProveedor,
+    correo: CorreoProveedor,
+    direccion: DireccionProveedor
+  })
+  .then(() => {
+    alert("Proveedor insertado con éxito.");
+    getProveedores();
+    setNombreProveedor(''); setTelefonoProveedor(''); setCorreoProveedor(''); setDireccionProveedor('');
+  })
+  .catch(err => {
+    console.error(err);
+    alert("Error al insertar proveedor.");
+  });
+};
+
+const getProveedores = () => {
+  Axios.get('http://localhost:3001/api/getProveedores')
+    .then(res => setProveedores(res.data))
+    .catch(err => console.log(err));
+};
+
+const deleteProveedor = (id) => {
+  Axios.delete(`http://localhost:3001/api/deleteProveedores/${id}`)
+    .then(() => getProveedores())
+    .catch(err => console.log(err));
+};
+
+// ==========================
+// PRODUCTOS-PROVEEDORES
+// ==========================
+const [IDProductoPP, setIDProductoPP] = useState('');
+const [IDProveedorPP, setIDProveedorPP] = useState('');
+const [PrecioCompraPP, setPrecioCompraPP] = useState('');
+const [productosProveedores, setProductosProveedores] = useState([]);
+
+const submitProductoProveedor = () => {
+  if (!IDProductoPP || !IDProveedorPP || !PrecioCompraPP) {
+    alert("Todos los campos de Producto-Proveedor son obligatorios.");
+    return;
+  }
+
+  Axios.post('http://localhost:3001/api/insertProductoProveedor', {
+    idProducto: IDProductoPP,
+    idProveedor: IDProveedorPP,
+    precioCompra: PrecioCompraPP
+  })
+  .then(() => {
+    alert("Producto-Proveedor insertado con éxito.");
+    getProductosProveedores();
+    setIDProductoPP(''); setIDProveedorPP(''); setPrecioCompraPP('');
+  })
+  .catch(err => {
+    console.error(err);
+    alert("Error al insertar Producto-Proveedor.");
+  });
+};
+
+const getProductosProveedores = () => {
+  Axios.get('http://localhost:3001/api/getProductosProveedores')
+    .then(res => setProductosProveedores(res.data))
+    .catch(err => console.log(err));
+};
+
+
+  // ==========================
   // useEffect para cargar datos cuando cambias de menú
   // ==========================
   useEffect(() => {
@@ -223,6 +347,8 @@ function App() {
         <button onClick={() => setMenuActivo('Pedidos')}>Pedidos</button>
         <button onClick={() => setMenuActivo('Detalle')}>Detalle Pedido</button>
         <button onClick={() => setMenuActivo('Vistas')}>Vistas Generales</button>
+        <button onClick={() => setMenuActivo("Categorias")}>Categorías</button>
+
       </nav>
 
       {/* ========================== CLIENTES ========================== */}
@@ -350,6 +476,30 @@ function App() {
           </ul>
         </div>
       )}
+
+      {/* ========================== CATEGORIAS ========================== */}
+
+
+      {menuActivo === 'Categorias' && (
+        <div className='form-detalle'>
+        <section>
+          <h2>Categorías</h2>
+          <input placeholder="Nombre" value={NombreCategoria} onChange={e => setNombreCategoria(e.target.value)} />
+          <input placeholder="Descripción" value={DescripcionCategoria} onChange={e => setDescripcionCategoria(e.target.value)} />
+          <button onClick={submitCategoria}>Guardar ➕</button>
+          <button onClick={getCategorias}>Ver</button>
+          <ul>
+            {categorias.map(c => (
+              <li key={c.idCategoria}>
+                {c.idCategoria} - {c.nombre} - {c.descripcion}
+                <button onClick={() => deleteCategoria(c.idCategoria)}>Eliminar</button>
+              </li>
+            ))}
+          </ul>
+      </section>
+    </div>
+)}
+
 
       {/* ========================== VISTAS ========================== */}
       {menuActivo === 'Vistas' && (
