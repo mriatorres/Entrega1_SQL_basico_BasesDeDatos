@@ -28,7 +28,7 @@ CREATE TABLE `pedidos` (
   `id_pedido` int NOT NULL,
   `id_cliente` int NOT NULL,
   `id_empleado` int NOT NULL,
-  `fecha` date NOT NULL,
+  `fecha` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `id_pago` int NOT NULL,
   PRIMARY KEY (`id_pedido`),
   KEY `id_cliente` (`id_cliente`),
@@ -60,3 +60,4 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2025-11-08  9:25:27
+
